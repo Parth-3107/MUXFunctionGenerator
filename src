@@ -1,0 +1,19 @@
+import argparse
+from muxgen.main import main_function
+
+def main():
+    parser = argparse.ArgumentParser(description="8:1 Multiplexer Function Generator")
+    parser.add_argument("expression", type=str, help="The SOP or POS expression to be processed")
+    parser.add_argument("--simplify", action="store_true", help="Simplify the expression")
+    
+    args = parser.parse_args()
+    
+    if args.simplify:
+        simplified_expression = main_function(args.expression, simplify=True)
+        print(f"Simplified Expression: {simplified_expression}")
+    else:
+        output = main_function(args.expression, simplify=False)
+        print(f"Output: {output}")
+
+if __name__ == "__main__":
+    main()
